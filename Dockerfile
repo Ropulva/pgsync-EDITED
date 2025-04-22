@@ -5,7 +5,7 @@ ADD ./examples/ $WORKDIR/examples
 WORKDIR $WORKDIR
 RUN pip install git+https://github.com/toluaina/pgsync.git
 COPY ./docker/wait-for-it.sh wait-for-it.sh
-ARG EXAMPLE_NAME=airbnb
+ARG EXAMPLE_NAME=demo
 ENV EXAMPLE_NAME=$EXAMPLE_NAME
 COPY ./docker/runserver.sh runserver.sh
 RUN chmod +x wait-for-it.sh

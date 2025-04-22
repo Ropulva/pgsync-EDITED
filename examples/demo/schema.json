@@ -1,33 +1,32 @@
-[
-    {
-        "database": "demo",
-        "index": "demo",
-        "nodes": {
-            "table": "item",
-            "schema": "public",
-            "columns": [
-                "id",
-                "name",
-                "price",
-                "expired_at"
-            ],
-            "children": [
-                {
-                    "table": "uses",
-                    "schema": "public",
-                    "columns": [
-                        "id",
-                        "usage",
-                        "side_effects"
-                    ],
-                    "relationship": {
-                        "type": "one_to_many",
-                        "variant": "object_array", 
-                        "foreign_key": "item_id",
-                        "parent_key": "id" 
-                    }
+{
+    "database": "demo",
+    "index": "demo",
+    "nodes": {
+        "table": "item",
+        "schema": "public",
+        "columns": [
+            "id",
+            "name",
+            "price",
+            "expired_at"
+        ],
+        "children": [
+            {
+                "table": "uses",
+                "schema": "public",
+                "columns": [
+                    "id",
+                    "usage",
+                    "side_effects",
+                    "item_id"
+                ],
+                "relationship": {
+                    "variant": "object_array",
+                    "type": "one_to_many",
+                    "foreign_key": "item_id",
+                    "parent_key": "id"
                 }
-            ]
-        }
+            }
+        ]
     }
-]
+}

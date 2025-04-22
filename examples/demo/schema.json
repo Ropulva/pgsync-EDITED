@@ -24,8 +24,7 @@
                     "relationship": {
                         "type": "one_to_many",
                         "variant": "object_array", 
-                        "foreign_key": "item_id",
-                        "parent_key": "id" 
+                        "foreign_key": "item_id"
                     }
                 }
             ]

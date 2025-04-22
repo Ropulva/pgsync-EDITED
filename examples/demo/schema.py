@@ -63,15 +63,7 @@ def setup(config: str) -> None:
 )
 def main(config: str) -> None:
     config: str = get_config(config)
-    teardown(
-    drop_db=False,
-    truncate_db=False,
-    delete_redis=True,
-    drop_index=True,
-    delete_checkpoint=False,
-    config=config, 
-    validate=False
-)
+    teardown(drop_db=False,truncate_db=False,delete_redis=True,drop_index=True,delete_checkpoint=False,config=config,validate=False)
     setup(config)
 
 

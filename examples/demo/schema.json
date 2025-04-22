@@ -4,6 +4,7 @@
         "index": "demo",
         "nodes": {
             "table": "item",
+            "label": "items",
             "schema": "public",
             "columns": [
                 "id",
@@ -22,8 +23,9 @@
                         "item_id"
                     ],
                     "relationship": {
-                        "type": "one_to_many",
-                        "variant": "object"
+                        "variant": "scalar",
+                        "type": "one_to_many"
+                        
                     }
                 }
             ]

@@ -24,11 +24,6 @@ class Item(Base):
         sa.DateTime, default=datetime.now()
     )
     deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False)
-    uses: Mapped[list["Uses"]] = sa.orm.relationship(
-        "Uses",
-        back_populates="item",
-        cascade="all, delete-orphan"
-    )
 
 
 class Uses(Base):
@@ -38,9 +33,9 @@ class Uses(Base):
     usage: Mapped[str] = mapped_column(sa.String, unique=False, nullable=True)
     side_effects: Mapped[str] = mapped_column(sa.String, unique=False, nullable=True)
     item_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey(Item.id))
-    item: Mapped["Item"] = sa.orm.relationship(
-        "Item",
-        back_populates="uses"
+    item: Mapped[Item] = sa.orm.relationship(
+        Item,
+        backref=sa.orm.backref("items"),
     )
     
 

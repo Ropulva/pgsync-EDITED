@@ -18,12 +18,12 @@ class Item(Base):
     __tablename__ = "item"
     __table_args__ = (UniqueConstraint("id"),)
     id: Mapped[int] = mapped_column(sa.Integer, primary_key=True)
-    name: Mapped[str] = mapped_column(sa.String, unique=False, nullable=True),
-    price: Mapped[float] = mapped_column(sa.Float, unique=False, nullable=True),
+    name: Mapped[str] = mapped_column(sa.String, unique=False, nullable=True)
+    price: Mapped[float] = mapped_column(sa.Float, unique=False, nullable=True)
     expired_at: Mapped[datetime] = mapped_column(
         sa.DateTime, default=datetime.now()
     )
-    deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False),
+    deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False)
 
 
 class Uses(Base):

@@ -23,8 +23,7 @@
                     ],
                     "relationship": {
                         "type": "one_to_many",
-                        "variant": "scalar", 
-                        "foreign_key": "item_id"
+                        "variant": "object"
                     }
                 }
             ]

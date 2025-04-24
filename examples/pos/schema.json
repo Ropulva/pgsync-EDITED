@@ -71,7 +71,7 @@
                                 "workspace_id"
                             ],
                             "relationship": {
-                                "type": "many_to_one",
+                                "type": "one_to_many",
                                 "variant": "object"
                             }
                         }

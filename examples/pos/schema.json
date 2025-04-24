@@ -1,0 +1,83 @@
+[
+    {
+        "database": "pos",
+        "index": "pos",
+        "nodes": {
+            "table": "item",
+            "label": "items",
+            "schema": "public",
+            "columns": [
+                "id",
+                "created_at",
+                "created_by",
+                "deleted",
+                "drug_index_id",
+                "image_url",
+                "name_ar",
+                "name_en",
+                "points",
+                "taxable",
+                "updated_at",
+                "updated_by",
+                "workspace_id",
+                "international_barcode",
+                "manufacture",
+                "owner",
+                "form",
+                "number_of_strips",
+                "in_store_points",
+                "online_store_points",
+                "insurance_points",
+                "can_divide",
+                "gtn",
+                "tax_value_percent",
+                "old_barcode"
+            ],
+            "children": [
+                {
+                    "table": "item_active_ingredients",
+                    "schema": "public",
+                    "transform": {
+                        "rename": "active_ingredients"
+                    },
+                    "columns": [
+                        "id",
+                        "active_ingredient_id",
+                        "item_id",
+                        "workspace_id"
+                    ],
+                    "relationship": {
+                        "variant": "object",
+                        "type": "one_to_many"
+                    },
+                    "children": [
+                        {
+                            "table": "active_ingredient",
+                            "label": "active_ingredients",
+                            "schema": "public",
+                            "transform": {
+                                "embed": "object"
+                            },
+                            "columns": [
+                                "id",
+                                "concentration",
+                                "created_at",
+                                "created_by",
+                                "deleted",
+                                "drug_index_id",
+                                "name",
+                                "updated_at",
+                                "updated_by",
+                                "workspace_id"
+                            ],
+                            "relationship": {
+                                "type": "many_to_one",
+                                "variant": "object"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

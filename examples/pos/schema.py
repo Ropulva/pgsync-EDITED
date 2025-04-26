@@ -77,11 +77,7 @@ class ItemActiveIngredients(Base):
         Item,
         backref=sa.orm.backref("items"),
     )
-    active_ingredient_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey(ActiveIngredient.id))
-    active_ingredients: Mapped[ActiveIngredient] = sa.orm.relationship(
-        ActiveIngredient,
-        backref=sa.orm.backref("active_ingredients"),
-    )
+    active_ingredient_id: Mapped[int] = mapped_column(sa.Integer)
     
 
 class Tag(Base):

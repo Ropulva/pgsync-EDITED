@@ -32,22 +32,6 @@
                 "gtn",
                 "tax_value_percent",
                 "old_barcode"
-            ],
-            "children": [
-                {
-                    "table": "item_active_ingredients",
-                    "schema": "public",
-                    "columns": [
-                        "id",
-                        "active_ingredient_id",
-                        "item_id",
-                        "workspace_id"
-                    ],
-                    "relationship": {
-                        "variant": "object",
-                        "type": "one_to_many"
-                    }
-                }
             ]
         }
     }

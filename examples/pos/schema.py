@@ -142,13 +142,6 @@ class ItemUses(Base):
     )
 
 
-def setup(config: str) -> None:
-    for doc in config_loader(config):
-        database: str = doc.get("database", doc["index"])
-        with pg_engine(database) as engine:
-            Base.metadata.drop_all(engine)
-            Base.metadata.create_all(engine)
-
 
 @click.command()
 @click.option(
@@ -160,7 +153,6 @@ def setup(config: str) -> None:
 def main(config: str) -> None:
     config: str = get_config(config)
     teardown(drop_db=False,truncate_db=False,delete_redis=True,drop_index=True,delete_checkpoint=True,config=config,validate=False)
-    setup(config)
 
 
 if __name__ == "__main__":

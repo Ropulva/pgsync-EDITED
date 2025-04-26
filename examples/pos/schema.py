@@ -145,7 +145,6 @@ class ItemUses(Base):
 def setup(config: str) -> None:
     for doc in config_loader(config):
         database: str = doc.get("database", doc["index"])
-        create_database(database)
         with pg_engine(database) as engine:
             Base.metadata.drop_all(engine)
             Base.metadata.create_all(engine)

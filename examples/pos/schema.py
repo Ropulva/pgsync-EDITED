@@ -84,6 +84,63 @@ class ItemActiveIngredients(Base):
     )
     
 
+class Tag(Base):
+    __tablename__ = "tag"
+    __table_args__ = (UniqueConstraint("id"),)
+    id: Mapped[int] = mapped_column(sa.Integer, primary_key=True)
+    deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False)
+    name: Mapped[str] = mapped_column(sa.String, unique=False, nullable=True)
+    workspace_id: Mapped[int] = mapped_column(sa.Integer)
+
+class ItemTags(Base):
+    __tablename__ = "item_tags"
+    __table_args__ = (UniqueConstraint("id"),)
+    id: Mapped[int] = mapped_column(sa.Integer, primary_key=True)
+    workspace_id: Mapped[int] = mapped_column(sa.Integer)
+    item_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey(Item.id))
+    item: Mapped[Item] = sa.orm.relationship(
+        Item,
+        backref=sa.orm.backref("items"),
+    )
+    tag_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey(Tag.id))
+    tags: Mapped[Tag] = sa.orm.relationship(
+        Tag,
+        backref=sa.orm.backref("tags"),
+    )
+
+class Utilization(Base):
+    __tablename__ = "utilization"
+    __table_args__ = (UniqueConstraint("id"),)
+    id: Mapped[int] = mapped_column(sa.Integer, primary_key=True)
+    created_at: Mapped[datetime] = mapped_column(
+        sa.DateTime, default=datetime.now()
+    )
+    created_by: Mapped[str] = mapped_column(sa.String, unique=False, nullable=True)
+    deleted: Mapped[bool] = mapped_column(sa.Boolean, default=False)
+    drug_index_id: Mapped[str] = mapped_column(sa.String, unique=False, nullable=True)
+    name: Mapped[str] = mapped_column(sa.String, unique=False, nullable=True)
+    updated_at: Mapped[datetime] = mapped_column(
+        sa.DateTime, default=datetime.now()
+    )
+    updated_by: Mapped[str] = mapped_column(sa.String, unique=False, nullable=True)
+    workspace_id: Mapped[int] = mapped_column(sa.Integer)
+
+class ItemUses(Base):
+    __tablename__ = "item_uses"
+    __table_args__ = (UniqueConstraint("id"),)
+    id: Mapped[int] = mapped_column(sa.Integer, primary_key=True)
+    workspace_id: Mapped[int] = mapped_column(sa.Integer)
+    item_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey(Item.id))
+    item: Mapped[Item] = sa.orm.relationship(
+        Item,
+        backref=sa.orm.backref("items"),
+    )
+    use_id: Mapped[int] = mapped_column(sa.Integer, sa.ForeignKey(Utilization.id))
+    utilizations: Mapped[Utilization] = sa.orm.relationship(
+        Utilization,
+        backref=sa.orm.backref("utilizations"),
+    )
+
 
 def setup(config: str) -> None:
     for doc in config_loader(config):
@@ -103,7 +160,7 @@ def setup(config: str) -> None:
 )
 def main(config: str) -> None:
     config: str = get_config(config)
-    teardown(drop_db=False,truncate_db=False,delete_redis=True,drop_index=True,delete_checkpoint=False,config=config,validate=False)
+    teardown(drop_db=False,truncate_db=False,delete_redis=True,drop_index=True,delete_checkpoint=True,config=config,validate=False)
     setup(config)
 
 

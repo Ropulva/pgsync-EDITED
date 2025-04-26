@@ -1,7 +1,7 @@
 [
     {
         "database": "pos",
-        "index": "pos",
+        "index": "items",
         "nodes": {
             "table": "item",
             "label": "items",

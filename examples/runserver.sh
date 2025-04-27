@@ -17,6 +17,6 @@ export ELASTICSEARCH_INDEX=$@
 
 export ELASTICSEARCH_URL=$ELASTICSEARCH_SCHEME://$ELASTICSEARCH_HOST:$ELASTICSEARCH_PORT
 
-cd ./pos
+cd ./demo
 
 adev runserver -p 8000 server.py

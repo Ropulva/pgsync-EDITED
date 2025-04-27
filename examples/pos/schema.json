@@ -9,9 +9,29 @@
             "columns": [
                 "id",
                 "created_at",
+                "created_by",
                 "deleted",
+                "drug_index_id",
+                "image_url",
+                "name_ar",
                 "name_en",
-                "points"
+                "points",
+                "taxable",
+                "updated_at",
+                "updated_by",
+                "workspace_id",
+                "international_barcode",
+                "manufacture",
+                "owner",
+                "form",
+                "number_of_strips",
+                "in_store_points",
+                "online_store_points",
+                "insurance_points",
+                "can_divide",
+                "gtn",
+                "tax_value_percent",
+                "old_barcode"
             ],
             "children": [
                 {
@@ -40,8 +60,94 @@
                             },
                             "columns": [
                                 "id",
+                                "concentration",
+                                "created_at",
+                                "created_by",
                                 "deleted",
-                                "name"
+                                "drug_index_id",
+                                "name",
+                                "updated_at",
+                                "updated_by",
+                                "workspace_id"
+                            ],
+                            "relationship": {
+                                "type": "one_to_many",
+                                "variant": "object"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "table": "item_tags",
+                    "schema": "public",
+                    "transform": {
+                        "rename": "tags"
+                    },
+                    "columns": [
+                        "id",
+                        "tag_id",
+                        "item_id",
+                        "workspace_id"
+                    ],
+                    "relationship": {
+                        "variant": "object",
+                        "type": "one_to_many"
+                    },
+                    "children": [
+                        {
+                            "table": "tag",
+                            "label": "tags",
+                            "schema": "public",
+                            "transform": {
+                                "embed": "object"
+                            },
+                            "columns": [
+                                "id",
+                                "deleted",
+                                "name",
+                                "workspace_id"
+                            ],
+                            "relationship": {
+                                "type": "one_to_many",
+                                "variant": "object"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "table": "item_uses",
+                    "schema": "public",
+                    "transform": {
+                        "rename": "uses"
+                    },
+                    "columns": [
+                        "id",
+                        "use_id",
+                        "item_id",
+                        "workspace_id"
+                    ],
+                    "relationship": {
+                        "variant": "object",
+                        "type": "one_to_many"
+                    },
+                    "children": [
+                        {
+                            "table": "utilization",
+                            "label": "utilizations",
+                            "schema": "public",
+                            "transform": {
+                                "embed": "object"
+                            },
+                            "columns": [
+                                "id",
+                                "created_at",
+                                "created_by",
+                                "deleted",
+                                "drug_index_id",
+                                "name",
+                                "updated_at",
+                                "updated_by",
+                                "workspace_id"
                             ],
                             "relationship": {
                                 "type": "one_to_many",
